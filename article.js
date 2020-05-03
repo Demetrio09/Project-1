@@ -1,6 +1,30 @@
 // API key
 var apiKey = "j35DYxgdTMaAnK6LR98HkviwSyGhfIul"
-var userSearch = "George Washington";
+
+var userSearch = "";
+
+// create a event listener for the search button
+$("#search-button").on("click", function (event) {
+    // event.preventDefault() function prevents the forms from trying to submit itself.
+    event.preventDefault();
+
+    // grab the value form users input
+    // save the value to varible userSearch
+    var userSearch = $("#search").val().trim();
+
+    var itWorks = $("<h2>");
+    itWorks.attr("style", "background: yellow; font-family: Arial");
+    itWorks.attr("data-name", userSearch);
+    itWorks.text(userSearch);
+    $("#main-content").prepend(itWorks);
+})
+
+// access api in order to retrive articles
+// append the resolt on div #main-content
+
+
+
+
 var queryURL = "https:core.ac.uk:443/api-v2/search/" + userSearch + "?page=5&pageSize=10&apiKey=" + apiKey;
 
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
@@ -10,6 +34,7 @@ var queryURL = "https:core.ac.uk:443/api-v2/search/" + userSearch + "?page=5&pag
     }).then(function(response) {
         console.log(response);
     });
+
 
 /*
 var apiKey = "j35DYxgdTMaAnK6LR98HkviwSyGhfIul";
