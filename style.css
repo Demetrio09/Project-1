@@ -2,6 +2,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1;
+    background-color: gray;
   }
 =======
   }
@@ -14,7 +15,39 @@ body {
 
 
   #side-bar {
-    background-color: lightsalmon;
+    background-color: rgb(1,89,160);
     height: 100%;
     min-height: 1000px !important;
+<<<<<<< HEAD
   }
+
+  nav {
+    background-color: rgb(1,89,160);
+    height: 200px;
+
+  }
+
+h5 {
+  text-align: center;
+}
+
+h6 {
+  text-align: right;
+  padding: 20px;
+  font-family: 'Parisienne', cursive;
+}
+
+form {
+  margin-top: 30px;
+}
+
+
+
+
+  
+
+
+ 
+=======
+  }
+>>>>>>> 120dbc2229922ebfb10e3e2bca642bf21bea24d0
