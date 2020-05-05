@@ -4,8 +4,7 @@ body {
     line-height: 1;
     background-color: gray;
   }
-=======
-  }
+
 
   #main-content {
     background-color: aquamarine;
@@ -18,7 +17,6 @@ body {
     background-color: rgb(1,89,160);
     height: 100%;
     min-height: 1000px !important;
-<<<<<<< HEAD
   }
 
   nav {
@@ -48,6 +46,3 @@ form {
 
 
  
-=======
-  }
->>>>>>> 120dbc2229922ebfb10e3e2bca642bf21bea24d0
