@@ -8,14 +8,16 @@ $("#search-button").on("click", function (event) {
 
     // call search function
     searchArticle();
+    // wikipediaFunc();
+    // doWiki()
 })
 
 // access api in order to retrive articles
 
 function searchArticle() {
-    
+
     // grab the value form users input
-        // save the value to varible userSearch
+    // save the value to varible userSearch
     var userSearch = $("#search").val().trim();
     var queryURL = "https://core.ac.uk:443/api-v2/search/" + userSearch + "?page=1&pageSize=10&apiKey=" + apiKey;
 
@@ -26,10 +28,10 @@ function searchArticle() {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
             var authors = response.data[i]._source.authors[i];
             var description = response.data[i]._source.description;
             var datePublished = response.data[i]._source.datePublished;
@@ -43,56 +45,81 @@ function searchArticle() {
             var urlsEl = $("<a>");
             urlsEl.attr("href", urls);
             urlsEl.attr("target", "_blank");
+            inquiry.addClass("new-class");
             inquiry.attr("data-name", userSearch);
+            descriptionEl.attr("style", "text-align: justify");
             inquiry.text(userSearch);
             authorsEl.text(authors);
             descriptionEl.text(description);
             datePublishedEl.text(datePublished);
             topicsEl.text(topics);
             urlsEl.text(urls);
-        // prepend the results on div #main-content
-            $("#main-content").prepend(inquiry);
+            // prepend the results on div #main-content
             $("#main-content").prepend(authorsEl);
             $("#main-content").prepend(descriptionEl);
             $("#main-content").prepend(datePublishedEl);
             $("#main-content").prepend(topicsEl);
             $("#main-content").prepend(urlsEl);
+            $("#main-content").prepend(inquiry);
+            
             console.log(authors);
             console.log(description);
             console.log(datePublished);
             console.log(topics);
             console.log(urls);
         }
-        authorsEl.empty();
-        descriptionEl.empty();
-        datePublishedEl.empty();
-        topicsEl.empty();
-        urlsEl.empty();
-        
+        doWiki();
     });
-
-    function wikipediaFunc() {
-        var wikipediaSearch = userSearch
-        var wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + userSearch + "&utf8=&format=json";
-        $("#search").val("");
-
-        $.ajax({
-            url: wikipediaURL,
-            method: "GET"
-        }).then(function(wikiReponse) {
-            console.log(wikiReponse);
-        })
-        
-        wikipediaFunc();
-
-    }
 }
+
+// function wikipediaFunc() {
+//     console.log("Wiki works")
+//     var userSearch = $("#search").val().trim();
+//     var wikipediaSearch = userSearch;
+//     var wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + "florida" //wikipediaSearch;
+//     $("#search").val("");
+
+//     $.ajax({
+//         url: wikipediaURL,
+//         method: "GET"
+//     }).then(function(response) {
+//         console.log(response);
+//     })
+// }
+
+function doWiki() {
+    var searchWiki = $(".new-class").attr("data-name");
+    var after = (encodeURIComponent(searchWiki.trim()));
+    console.log(searchWiki);
+    console.log(after);
+    
+    // console.log(afterSeacrWiki);
+    
+    
+    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srlimit=10&sroffset=10&srsearch=" + after;
+
+    $.ajax({
+        url: wikiURL,
+        dataType: 'jsonp',
+        success: function (data) {
+            console.log(data);
+            console.log(wikiURL);
+            var wikiEl = data.query.search[0].snippet;
+            console.log(wikiEl);
+            // newEl.text(wikiEl);
+            // newEl.attr("style", "text-align: justify");
+            $("#main-content").append(wikiEl);
+            
+        }
+    });
+}
+
 /*
 var apiKey = "j35DYxgdTMaAnK6LR98HkviwSyGhfIul";
 
 // function to clear value on users input
 function clearInput() {
-    $("#search-tearm").empty();
+    $("#search-tearm").remove();
 };
 
 // on click event to run the search function
