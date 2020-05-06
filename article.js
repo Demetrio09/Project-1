@@ -41,16 +41,10 @@ function searchArticle() {
             var datePublishedEl = $("<p>");
             var topicsEl = $("<p>");
             var urlsEl = $("<a>");
-            authorsEl.attr("style", "background: yellow; font-family: Arial");
-            descriptionEl.attr("style", "background: yellow; font-family: Arial");
-            datePublishedEl.attr("style", "background: yellow; font-family: Arial");
-            topicsEl.attr("style", "background: yellow; font-family: Arial");
-            urlsEl.attr("style", "background: yellow; font-family: Arial");
             urlsEl.attr("href", urls);
             urlsEl.attr("target", "_blank");
-            itWorks.attr("style", "background: yellow; font-family: Arial");
             itWorks.attr("data-name", userSearch);
-            itWorks.text("It works");
+            itWorks.text(userSearch);
             authorsEl.text(authors);
             descriptionEl.text(description);
             datePublishedEl.text(datePublished);
