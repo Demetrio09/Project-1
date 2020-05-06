@@ -1,27 +1,68 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1;
+    font-family: 'Playfair Display', serif;
+    /* font-size: 16px; */
+    /* line-height: 1; */
     background-color: gray;
   }
 
+  h1 {
+    padding: 10px;
+  }
+
+  #main{
+   background-color: aquamarine;
+    height: 100%;
+    min-height: 800px !important;
+    max-height: 1000px !important;
+    
+  }
 
   #main-content {
-    background-color: aquamarine;
-    height: 100%;
-    min-height: 1000px !important;
+    border-style: solid;
+    overflow: auto;
+    /* margin: auto 0; */
+    height: 700px;
+    width: auto;
+    margin: 10px;
+    background-color: gray;
+    padding: 10px;
+    }
+
+  #main-content, p {
+    text-align: center;
+    font-size: 20px;
+
   }
+   #main-content, h3 {
+
+   }
+
+   #main-content, h4 {
+
+   }
+
+   #main-content, h5 {
+
+
+   }
 
 
   #side-bar {
-    background-color: rgb(1,89,160);
+   background-color: rgb(1,89,160);
     height: 100%;
-    min-height: 1000px !important;
+    min-height: 800px !important;
+    max-height: 1000px !important;
+    
   }
 
   nav {
     background-color: rgb(1,89,160);
     height: 200px;
+    padding-bottom: 40px;
 
   }
 
@@ -33,10 +74,13 @@ h6 {
   text-align: right;
   padding: 20px;
   font-family: 'Parisienne', cursive;
+  margin-bottom: 40px;
 }
 
 form {
-  margin-top: 30px;
+  padding: 40px;
+  margin-top: 60px;
+  
 }
 
 #playlist li a {
@@ -49,6 +93,9 @@ li :hover svg:hover{
   cursor: pointer;
   
 }
+
+
+
 
 
 

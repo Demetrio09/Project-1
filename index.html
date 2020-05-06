@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>The Classic Genius</title>
@@ -30,11 +30,10 @@
     
     <div class="row">
       <div class="col s12 m4 l3" id="side-bar">
-        <!-- sidebar -->
         <form>
-          <div class="input-section">
+          <div class="input-section" id="query">
             <label for="content-search"></label>
-            <input type="text" name="search" id="search" />
+            <input type="text" name="search" id="search"/>
             <button id="search-button">Search</button>
           </div>
         </form>
@@ -51,11 +50,12 @@
 
         <div id= "playlist"></div>
          
-      </div>
-      <div class="col s12 m8 l9" id="main-content">
-        <div id="content"></div>
-      </div>
     </div>
+      <div class="col s12 m8 l9" id="main">
+        <div id="main-content">
+        </div>
+      </div>
+    
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
