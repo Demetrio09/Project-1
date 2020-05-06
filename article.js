@@ -29,35 +29,29 @@ function searchArticle() {
     }).then(function(response) {
         console.log(response);
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 4; i++) {
             var authors = response.data[i]._source.authors[i];
             var description = response.data[i]._source.description;
             var datePublished = response.data[i]._source.datePublished;
             var topics = response.data[i]._source.topics[i];
             var urls = response.data[i]._source.urls[i];
-            var itWorks = $("<h2>");
-            var authorsEl = $("<h3>");
+            var inquiry = $("<h3>");
+            var authorsEl = $("<h4>");
             var descriptionEl = $("<h5>");
             var datePublishedEl = $("<p>");
             var topicsEl = $("<p>");
             var urlsEl = $("<a>");
-            authorsEl.attr("style", "background: yellow; font-family: Arial");
-            descriptionEl.attr("style", "background: yellow; font-family: Arial");
-            datePublishedEl.attr("style", "background: yellow; font-family: Arial");
-            topicsEl.attr("style", "background: yellow; font-family: Arial");
-            urlsEl.attr("style", "background: yellow; font-family: Arial");
             urlsEl.attr("href", urls);
             urlsEl.attr("target", "_blank");
-            itWorks.attr("style", "background: yellow; font-family: Arial");
-            itWorks.attr("data-name", userSearch);
-            itWorks.text("It works");
+            inquiry.attr("data-name", userSearch);
+            inquiry.text(userSearch);
             authorsEl.text(authors);
             descriptionEl.text(description);
             datePublishedEl.text(datePublished);
             topicsEl.text(topics);
             urlsEl.text(urls);
         // prepend the results on div #main-content
-            $("#main-content").prepend(itWorks);
+            $("#main-content").prepend(inquiry);
             $("#main-content").prepend(authorsEl);
             $("#main-content").prepend(descriptionEl);
             $("#main-content").prepend(datePublishedEl);
@@ -77,6 +71,21 @@ function searchArticle() {
         
     });
 
+    function wikipediaFunc() {
+        var wikipediaSearch = userSearch
+        var wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + userSearch + "&utf8=&format=json";
+        $("#search").val("");
+
+        $.ajax({
+            url: wikipediaURL,
+            method: "GET"
+        }).then(function(wikiReponse) {
+            console.log(wikiReponse);
+        })
+        
+        wikipediaFunc();
+
+    }
 }
 /*
 var apiKey = "j35DYxgdTMaAnK6LR98HkviwSyGhfIul";
