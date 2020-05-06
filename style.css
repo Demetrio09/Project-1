@@ -39,6 +39,16 @@ form {
   margin-top: 30px;
 }
 
+#playlist li a {
+  color: wheat;
+}
+#songToPlay .current-song a {
+  color : yellow;
+}
+li :hover svg:hover{
+  cursor: pointer;
+  
+}
 
 
 
