@@ -38,7 +38,28 @@ h6 {
 form {
   margin-top: 30px;
 }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
+main {
+  flex: 1 0 auto;
+}
+
+#grey-text  {
+  position: center;
+}
+.container {
+  position: center;
+}
+p {
+  text-align: center;
+  font-family: 'Parisienne', cursive;
+  height: 20px;
+  text-size-adjust: 50px;
+}
 
 
 
