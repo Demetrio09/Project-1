@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -37,20 +38,19 @@
             <button id="search-button">Search</button>
           </div>
         </form>
-        <div>
+        <div id ="player">
           <h5>The Playlist</h5>
+          <div id = "songTittle"></div>
+          <div id = "buttons"> 
+            <i id = "pre" onclick="pre()"class="material-icons small">fast_rewind</i>
+            <i id = "play" onclick="playOrPauseSong()" class="material-icons medium">pause_circle_filled</i>
+            <i id = "next" onclick="next()" class="material-icons small">fast_forward</i>
+          </div>
+            <div id = "playlist"></div>
         </div>
-        <audio id="playmusic">
-          <source id="source">
-        </audio>
-        <div id="control">
-          <i class="material-icons medium">play_circle_filled</i>
-          <i class="material-icons medium">pause_circle_filled</i>
-        </div>
-        <div id="playlist"></div>
-        </div>
-      
-        <div class="col s12 m8 l9" id="main">
+         
+    </div>
+      <div class="col s12 m8 l9" id="main">
         <div id="main-content">
         </div>
       </div>
@@ -62,19 +62,16 @@
       <center>© 2020 Copyright </center>
     </footer>
   </div>
-  </body>
 
-</html>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="article.js"></script>
 <script src="music.js"></script>
+  </body>
+</html>
+  
 
-<!-- </body> -->
-<!-- <footer class="page-footer"> -->
-<!-- <h5 class="white-text"> PUT SOMETHING HERE</h5> -->
-<!-- <p class="grey-text text-lighten-3">Claude Debussy: "Works of art make rules; rules do not make works of art."</p> -->
-<!-- <center>© 2020 Copyright </center> -->
-<!-- </footer> -->
-<!-- </html> -->
+
+
+
