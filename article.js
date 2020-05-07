@@ -7,6 +7,7 @@ $("#search-button").on("click", function (event) {
     event.preventDefault();
 
     // call search function
+    // $("#new-article-div").remove();
     searchArticle();
     // wikipediaFunc();
     // doWiki()
@@ -15,6 +16,8 @@ $("#search-button").on("click", function (event) {
 // access api in order to retrive articles
 
 function searchArticle() {
+
+    var articleNumberCount = 6;
 
     // grab the value form users input
     // save the value to varible userSearch
@@ -37,115 +40,98 @@ function searchArticle() {
             var datePublished = response.data[i]._source.datePublished;
             var topics = response.data[i]._source.topics[i];
             var urls = response.data[i]._source.urls[i];
-            var inquiry = $("<h3>");
+            var articlesDiv = $("<div>");
+            var inquiryEl = $("<h3>");
             var authorsEl = $("<h4>");
             var descriptionEl = $("<h5>");
             var datePublishedEl = $("<p>");
             var topicsEl = $("<p>");
             var urlsEl = $("<a>");
+            articlesDiv.attr("id", "new-article-div");
             urlsEl.attr("href", urls);
             urlsEl.attr("target", "_blank");
-            inquiry.addClass("new-class");
-            inquiry.attr("data-name", userSearch);
+            inquiryEl.addClass("new-class");
+            inquiryEl.attr("data-name", userSearch);
             descriptionEl.attr("style", "text-align: justify");
-            inquiry.text(userSearch);
+            inquiryEl.text("Article " + articleNumberCount-- + ": " + userSearch);
             authorsEl.text(authors);
             descriptionEl.text(description);
             datePublishedEl.text(datePublished);
             topicsEl.text(topics);
             urlsEl.text(urls);
-            // prepend the results on div #main-content
-            $("#main-content").prepend(authorsEl);
-            $("#main-content").prepend(descriptionEl);
-            $("#main-content").prepend(datePublishedEl);
-            $("#main-content").prepend(topicsEl);
-            $("#main-content").prepend(urlsEl);
-            $("#main-content").prepend(inquiry);
-            
-            console.log(authors);
-            console.log(description);
-            console.log(datePublished);
-            console.log(topics);
-            console.log(urls);
+            // append the results on div #main-content
+            if (authors === "undefined") {
+                console.log("authors are not present");
+            } if (description === "undefined") {
+                console.log("authors are not present");
+            } if (datePublished === "undefined") {
+                console.log("authors are not present");
+            } if (topics === "undefined") {
+                console.log("authors are not present");
+            } if (urls === "undefined") {
+                console.log("authors are not present");
+            } else {
+                $("#main-content").prepend(articlesDiv);
+                $("#new-article-div").prepend(authorsEl);
+                $("#new-article-div").prepend(descriptionEl);
+                $("#new-article-div").prepend(datePublishedEl);
+                $("#new-article-div").prepend(topicsEl);
+                $("#new-article-div").prepend(urlsEl);
+                $("#new-article-div").prepend(inquiryEl);
+
+            }
+            // console.log(authors);
+            // console.log(description);
+            // console.log(datePublished);
+            // console.log(topics);
+            // console.log(urls);
         }
         doWiki();
     });
 }
 
-// function wikipediaFunc() {
-//     console.log("Wiki works")
-//     var userSearch = $("#search").val().trim();
-//     var wikipediaSearch = userSearch;
-//     var wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + "florida" //wikipediaSearch;
-//     $("#search").val("");
-
-//     $.ajax({
-//         url: wikipediaURL,
-//         method: "GET"
-//     }).then(function(response) {
-//         console.log(response);
-//     })
-// }
-
 function doWiki() {
+
     var searchWiki = $(".new-class").attr("data-name");
     var after = (encodeURIComponent(searchWiki.trim()));
     console.log(searchWiki);
     console.log(after);
-    
-    // console.log(afterSeacrWiki);
-    
-    
-    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srlimit=10&sroffset=10&srsearch=" + after;
+
+    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + after;
 
     $.ajax({
         url: wikiURL,
         dataType: 'jsonp',
         success: function (data) {
+
             console.log(data);
-            console.log(wikiURL);
-            var wikiEl = data.query.search[0].snippet;
-            console.log(wikiEl);
-            // newEl.text(wikiEl);
-            // newEl.attr("style", "text-align: justify");
-            $("#main-content").append(wikiEl);
-            
+            var id = Object.keys(data.query.pages)[0];
+            // console.log(data.query.pages[id].extract);
+            // console.log(data.query.pages[id].title);
+            console.log(id);
+            var wikiExtract = data.query.pages[id].extract;
+            var wikiTitle = data.query.pages[id].title;
+            console.log(wikiExtract);
+            console.log(wikiTitle);
+
+            // appending new Wikipedia elements on document
+            for (var i = 0; i < 1; i++) {
+                var newWikiDiv = $("<div>");
+                var wikiExtDiv = $("<div>");
+                var wikiTitleDiv = $("<div>");
+                newWikiDiv.attr("id", "new-wiki-div");
+                wikiExtDiv.attr("id", "wikipedia-extract");
+                wikiTitleDiv.attr("id", "wikipedia-title");
+                wikiExtDiv.attr("style", "text-align: justify");
+                wikiExtDiv.text(wikiExtract);
+                wikiTitleDiv.text(wikiTitle);
+                $("#main-content").prepend(newWikiDiv);
+                $("#new-wiki-div").prepend(wikiExtDiv);
+                $("#new-wiki-div").prepend("<h3>" + "Article 1: " + wikiTitle + "</h3>");
+                // $("#wikipedia-title").append("<h3>" + wikiTitle + "</h3>");
+                // $("#wikipedia-extract").append(wikiTitleDiv);
+                // $("#wikipedia-extract").append(wikiExtract);
+            }
         }
     });
 }
-
-/*
-var apiKey = "j35DYxgdTMaAnK6LR98HkviwSyGhfIul";
-
-// function to clear value on users input
-function clearInput() {
-    $("#search-tearm").remove();
-};
-
-// on click event to run the search function
-$("#run-search").on("click", function(event) {
-    // This line allows us to take advantage of the HTML "submit" property
-    // This way we can hit enter on the keyboard and it registers the search
-    // (in addition to clicks) prevents the page from reloading on form submit.
-    event.preventDefault();
-
-    // set a varible in order to save the value from users input
-    var searchTearm = $("#search-tearm").val().trim();
-
-    // call function to clear users input
-    clearInput();
-
-    // Build the query URL for te ajax request to the CORE API
-    var queryURL = "https:core.ac.uk:443/api-v2/search/george%20washington?page=5&pageSize=10&apiKey=" + apiKey;
-
-    // Make the AJAX request to the API - GETs the JSON data at the queryURL.
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(response);
-
-    console.log(response);
-});
-*/
-
-// console.log response
