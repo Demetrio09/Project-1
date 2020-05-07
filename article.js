@@ -89,8 +89,8 @@ function doWiki() {
 
     var searchWiki = $(".new-class").attr("data-name");
     var after = (encodeURIComponent(searchWiki.trim()));
-    console.log(searchWiki);
-    console.log(after);
+    // console.log(searchWiki);
+    // console.log(after);
 
     var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" + after;
 
@@ -99,15 +99,15 @@ function doWiki() {
         dataType: 'jsonp',
         success: function (data) {
 
-            console.log(data);
+            // console.log(data);
             var id = Object.keys(data.query.pages)[0];
             // console.log(data.query.pages[id].extract);
             // console.log(data.query.pages[id].title);
-            console.log(id);
             var wikiExtract = data.query.pages[id].extract;
             var wikiTitle = data.query.pages[id].title;
-            console.log(wikiExtract);
-            console.log(wikiTitle);
+            // console.log(id);
+            // console.log(wikiExtract);
+            // console.log(wikiTitle);
 
             // appending new Wikipedia elements on document
             for (var i = 0; i < 1; i++) {
