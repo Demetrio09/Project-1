@@ -7,14 +7,10 @@ $("#search-button").on("click", function (event) {
     event.preventDefault();
 
     // call search function
-    // $("#new-article-div").remove();
     searchArticle();
-    // wikipediaFunc();
-    // doWiki()
 })
 
 // access api in order to retrive articles
-
 function searchArticle() {
 
     var articleNumberCount = 6;
@@ -61,15 +57,15 @@ function searchArticle() {
             urlsEl.text(urls);
             // append the results on div #main-content
             if (authors === "undefined") {
-                console.log("authors are not present");
+                console.log("authors is undefined");
             } if (description === "undefined") {
-                console.log("authors are not present");
+                console.log("description is undefined");
             } if (datePublished === "undefined") {
-                console.log("authors are not present");
+                console.log("datePublished is undefined");
             } if (topics === "undefined") {
-                console.log("authors are not present");
+                console.log("topics is undefined");
             } if (urls === "undefined") {
-                console.log("authors are not present");
+                console.log("urls is undefined");
             } else {
                 $("#main-content").prepend(articlesDiv);
                 $("#new-article-div").prepend(authorsEl);
@@ -78,7 +74,6 @@ function searchArticle() {
                 $("#new-article-div").prepend(topicsEl);
                 $("#new-article-div").prepend(urlsEl);
                 $("#new-article-div").prepend(inquiryEl);
-
             }
             // console.log(authors);
             // console.log(description);
