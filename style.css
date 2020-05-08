@@ -2,23 +2,15 @@
   box-sizing: border-box;
 }
 
-
 body {
-  /* border-style: solid ; */
-  /* border-color: black; */
   font-family: 'Playfair Display', serif;
   color: rgb(219, 212, 212);
   display: flex;
-  /* min-height: 100vh;  */
-   /* flex-direction: column;  */
   background-color: gray;
-  
 }
+
 .container {
-  border:  3px solid black;
-  
   margin-bottom: 40px;
-  
 }
 
 .row {
@@ -31,29 +23,20 @@ body {
   padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
+ }
 
-}
-
-  h5 {
-    text-align:left;
+h1 {
+   padding:10px 10px 0px 10px;
   }
-  
+
+  h5, #search-button, #query {
+   text-align: center;
+  }
+
   h6 {
-    text-align: right;
-    padding: 20px;
-    font-family: 'Parisienne', cursive;
-    margin-bottom: 40px;
-  }
-
-  p {
-    text-align: center;
-    font-family: 'Parisienne', cursive;
-    height: 20px;
-    text-size-adjust: 50px;
-  }
-
-  header h5 {
-    text-align: center;
+   text-align: right;
+   padding-top: 10px;
+   font-family: 'Parisienne', cursive;
   }
 
   #side-bar {
@@ -63,62 +46,50 @@ body {
     max-height: 1000px !important; 
     padding-left: 20px;
     padding-right: 20px;
-       
-     }
+  }
+  
+  input {
+    text-align: center;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: rgb(212, 210, 58)
+  }
 
   form {
-    padding: 40px;
-    margin-top: 60px;
-      
-    }
+    margin-top: 45px;
+  }
 
   #main{
     background-color: aquamarine;
-    /* height: 100%; */
     min-height: 800px !important; 
     max-height: 1000px !important; 
-    /* flex: 1 0 auto; */
-    
   }
 
   #main-content {
     border-style: solid;
     overflow: auto;
-    border-color: black;
-    /* margin: auto 0; */
-    height: 700px;
+    border-color: antiquewhite;
+    height: 750px;
     width: auto;
     margin: 10px; 
-    background-color: gray;
     padding: 50px;
-    }
-
-  
-  
-  #main-content p {
-    text-align: center;
-    font-size: 20px;
-
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #f7f468 100%);
   }
 
- 
-  #main-content h3 {
-    color: red;
+  #main-content, p {
+    text-align: left;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+  } 
+  
+  #main-content a {
+      color: red;
+  }
 
-   }
-
-   #main-content h4 {
-     color: blue;
-
-   }
-
-   #main-content h5 {
-     color: green;
-
-
-   }
-
-#playlist {
+  #playlist {
   color: wheat;
   text-align: center;
 }
@@ -129,6 +100,7 @@ body {
 
 #player {
   text-align: center;
+  padding-top: 15px;
 }
 
 #buttons {
@@ -139,6 +111,7 @@ body {
 
 a {
   color: maroon;
+
 }
 
 #white-text {
@@ -146,11 +119,20 @@ a {
 }
 
 .page-footer {
-
   background-color:  rgb(1,89,160);
- 
-  
+ }
+
+#footer-quote {
+  font-family: 'Parisienne', cursive;
+  text-align: center;
 }
+
+#wikipedia-div p {
+  color: green;
+  text-align: left;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.64 rem;
+};
 
 
 
