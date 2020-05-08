@@ -10,10 +10,24 @@ $("#search-button").on("click", function (event) {
     searchArticle();
 })
 
+// function remove created divs
+function clearDivs() {
+    var removeDiv1 = $(".new-article-div");
+    var removeDiv2 = $("#wikipedia-div");
+    var removeDiv3 = $("#wikipedia-extract");
+    var removeDiv4 = $("#wikipedia-title");
+
+    removeDiv1.remove();
+    removeDiv2.remove();
+    removeDiv3.remove();
+    removeDiv4.remove();
+}
+
+
 // access api in order to retrive articles
 function searchArticle() {
 
-    var articleNumberCount = 6;
+    var articleNumberCount = 5;
 
     // grab the value form users input
     // save the value to varible userSearch
@@ -22,6 +36,9 @@ function searchArticle() {
 
     // clear input value after user clicks on search
     $("#search").val("");
+
+    // call function to remove divs
+    clearDivs();
 
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
     $.ajax({
@@ -43,38 +60,26 @@ function searchArticle() {
             var datePublishedEl = $("<p>");
             var topicsEl = $("<p>");
             var urlsEl = $("<a>");
-            articlesDiv.attr("id", "new-article-div");
+            articlesDiv.addClass("new-article-div");
             urlsEl.attr("href", urls);
             urlsEl.attr("target", "_blank");
             inquiryEl.addClass("new-class");
+            datePublishedEl.addClass("date-published");
             inquiryEl.attr("data-name", userSearch);
-            descriptionEl.attr("style", "text-align: justify");
             inquiryEl.text("Article " + articleNumberCount-- + ": " + userSearch);
             authorsEl.text(authors);
             descriptionEl.text(description);
             datePublishedEl.text(datePublished);
             topicsEl.text(topics);
             urlsEl.text(urls);
-            // append the results on div #main-content
-            if (authors === "undefined") {
-                console.log("authors is undefined");
-            } if (description === "undefined") {
-                console.log("description is undefined");
-            } if (datePublished === "undefined") {
-                console.log("datePublished is undefined");
-            } if (topics === "undefined") {
-                console.log("topics is undefined");
-            } if (urls === "undefined") {
-                console.log("urls is undefined");
-            } else {
+            // prepend the results on div #main-content
                 $("#main-content").prepend(articlesDiv);
-                $("#new-article-div").prepend(authorsEl);
-                $("#new-article-div").prepend(descriptionEl);
-                $("#new-article-div").prepend(datePublishedEl);
-                $("#new-article-div").prepend(topicsEl);
-                $("#new-article-div").prepend(urlsEl);
-                $("#new-article-div").prepend(inquiryEl);
-            }
+                $(".new-article-div").prepend(authorsEl);
+                $(".new-article-div").prepend(descriptionEl);
+                $(".new-article-div").prepend(datePublishedEl);
+                $(".new-article-div").prepend(topicsEl);
+                $(".new-article-div").prepend(urlsEl);
+                $(".new-article-div").prepend(inquiryEl);
             // console.log(authors);
             // console.log(description);
             // console.log(datePublished);
@@ -109,24 +114,15 @@ function doWiki() {
             // console.log(wikiExtract);
             // console.log(wikiTitle);
 
-            // appending new Wikipedia elements on document
-            for (var i = 0; i < 1; i++) {
+            // prepending new Wikipedia elements on document
                 var newWikiDiv = $("<div>");
-                var wikiExtDiv = $("<div>");
-                var wikiTitleDiv = $("<div>");
-                newWikiDiv.attr("id", "new-wiki-div");
-                wikiExtDiv.attr("id", "wikipedia-extract");
-                wikiTitleDiv.attr("id", "wikipedia-title");
-                wikiExtDiv.attr("style", "text-align: justify");
-                wikiExtDiv.text(wikiExtract);
-                wikiTitleDiv.text(wikiTitle);
+                var wikiTitleEl = $("<h3>");
+                newWikiDiv.attr("id", "wikipedia-div");
+                wikiTitleEl.attr("id", "wikipedia-return");
+                wikiTitleEl.text("Article 1: " + wikiTitle);
                 $("#main-content").prepend(newWikiDiv);
-                $("#new-wiki-div").prepend(wikiExtDiv);
-                $("#new-wiki-div").prepend("<h3>" + "Article 1: " + wikiTitle + "</h3>");
-                // $("#wikipedia-title").append("<h3>" + wikiTitle + "</h3>");
-                // $("#wikipedia-extract").append(wikiTitleDiv);
-                // $("#wikipedia-extract").append(wikiExtract);
-            }
+                $("#wikipedia-div").prepend(wikiExtract);
+                $("#wikipedia-div").prepend(wikiTitleEl);
         }
     });
 }
