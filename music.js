@@ -1,4 +1,4 @@
-var musicQuery = "http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=classical&api_key=d1d906a5cf18290e5ce9ee6df2fa0f87&format=json"
+var musicQuery = "https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=classical&api_key=d1d906a5cf18290e5ce9ee6df2fa0f87&format=json"
 var playlist = $('#playlist');
 
 var songs = [
